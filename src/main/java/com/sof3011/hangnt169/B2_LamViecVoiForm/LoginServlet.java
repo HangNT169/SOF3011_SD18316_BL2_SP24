@@ -9,6 +9,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", value = "/login")
+// FE (view clien giao diẹn) => jframe/jsp/html => webapp
+// BE(server) => logic => service, repositor, ..
+// trao doi bang controller thong qua phuong thuc HTTPMethods
 // VALUE LUON LUON BAT DAU BANG /
 // VALUE chua duong dan cua trinh duyet
 // BE & FE trao doi thong qua controller bang phuong thuc HTTP Methods
