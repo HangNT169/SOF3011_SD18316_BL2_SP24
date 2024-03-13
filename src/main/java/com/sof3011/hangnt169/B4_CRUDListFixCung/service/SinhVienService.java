@@ -18,7 +18,24 @@ public class SinhVienService {
         listSinhVien.add(new SinhVien("HE14316", "agsdfgsfd", 24, "Ha Noi1", true));
     }
 
-    public List<SinhVien>getAll(){
+    public List<SinhVien> getAll() {
         return listSinhVien;
+    }
+
+    public void add(SinhVien sv) {
+        listSinhVien.add(sv);
+    }
+
+    public void remove(String mssv) {
+//        for (SinhVien sv : listSinhVien) {
+//            if (sv.getMssv().equals(mssv)) {
+//                listSinhVien.remove(sv);
+//            }
+//        }
+        for (int i = 0; i < listSinhVien.size(); i++) {
+            if (listSinhVien.get(i).getMssv().equals(mssv)) {
+                listSinhVien.remove(i);
+            }
+        }
     }
 }

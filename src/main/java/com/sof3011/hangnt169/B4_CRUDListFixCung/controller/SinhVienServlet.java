@@ -7,8 +7,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +54,7 @@ public class SinhVienServlet extends HttpServlet {
         }
     }
 
+    @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uri = request.getRequestURI();
@@ -61,7 +65,8 @@ public class SinhVienServlet extends HttpServlet {
         }
     }
 
-    private void viewAddSinhVien(HttpServletRequest request, HttpServletResponse response) {
+    private void viewAddSinhVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/buoi4/add-sinh-vien.jsp").forward(request,response);
     }
 
     private void viewUpdateSinhVien(HttpServletRequest request, HttpServletResponse response) {
@@ -70,7 +75,10 @@ public class SinhVienServlet extends HttpServlet {
     private void detailSinhVien(HttpServletRequest request, HttpServletResponse response) {
     }
 
-    private void removeSinhVien(HttpServletRequest request, HttpServletResponse response) {
+    private void removeSinhVien(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String mssv = request.getParameter("a");
+        sinhVienService.remove(mssv);
+        response.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void searchSinhVien(HttpServletRequest request, HttpServletResponse response) {
@@ -82,7 +90,33 @@ public class SinhVienServlet extends HttpServlet {
         request.getRequestDispatcher("/buoi4/sinhviens.jsp").forward(request, response);
     }
 
-    private void addSinhVien(HttpServletRequest request, HttpServletResponse response) {
+    private void addSinhVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, InvocationTargetException, IllegalAccessException {
+//        // C1: Lam nhu bt
+//        // B1: Lay du lieu tu jsp ve servlet
+//        String mssv = request.getParameter("mssv");
+//        String ten = request.getParameter("ten");
+//        String tuoi = request.getParameter("tuoi");
+//        String diaChi = request.getParameter("diaChi");
+//        String gioiTinh = request.getParameter("gioiTinh");
+//        // B2: Khoi tao doi tuong (contructor => new)
+//        SinhVien sv = SinhVien.builder()
+//                .gioiTinh(Boolean.valueOf(gioiTinh))
+//                .mssv(mssv)
+//                .ten(ten)
+//                .diaChi(diaChi)
+//                .tuoi(Integer.valueOf(tuoi))
+//                .build(); // contructor khong ts
+//        // B3: goi service
+//        sinhVienService.add(sv);
+////        lists = sinhVienService.getAll(); // fake data : 5
+////        request.setAttribute("a", lists);
+////        request.getRequestDispatcher("/buoi4/sinhviens.jsp").forward(request, response);
+//        response.sendRedirect("/sinh-vien/hien-thi");
+        // C2: BeanUtil
+        SinhVien sv = new SinhVien();
+        BeanUtils.populate(sv,request.getParameterMap());
+        sinhVienService.add(sv);
+        response.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void updateSinhVien(HttpServletRequest request, HttpServletResponse response) {
