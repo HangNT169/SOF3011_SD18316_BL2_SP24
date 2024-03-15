@@ -1,18 +1,16 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-    MSSV:
+    Mã sinh viên:${sv1.mssv}
     <br/>
-    Ten:
+    Tên:${sv1.ten}
     <br/>
-    Tuoi:
+    Tuổi:${sv1.tuoi}
     <br/>
-    Dia chi:
+    Địa chỉ:${sv1.diaChi}
     <br/>
-    Gioi tinh:
+    Giới tính:${sv1.gioiTinh}
 </body>
 </html>

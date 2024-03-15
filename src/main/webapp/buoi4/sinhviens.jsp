@@ -36,7 +36,7 @@
             <td>
                 <a href="/sinh-vien/remove?a=${sv.mssv}">Delete</a>
                 <a href="/sinh-vien/detail?mssv=${sv.mssv}">Detail</a>
-                <a href="/sinh-vien/view-update?mssv=${sv.mssv}">Update</a>
+                <a href="/sinh-vien/view-update?a=${sv.mssv}">Update</a>
             </td>
         </tr>
     </c:forEach>

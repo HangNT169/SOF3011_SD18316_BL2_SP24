@@ -66,13 +66,21 @@ public class SinhVienServlet extends HttpServlet {
     }
 
     private void viewAddSinhVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/buoi4/add-sinh-vien.jsp").forward(request,response);
+        request.getRequestDispatcher("/buoi4/add-sinh-vien.jsp").forward(request, response);
     }
 
-    private void viewUpdateSinhVien(HttpServletRequest request, HttpServletResponse response) {
+    private void viewUpdateSinhVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String mssv = request.getParameter("a");
+        SinhVien sv = sinhVienService.detail(mssv);
+        request.setAttribute("sv1", sv);
+        request.getRequestDispatcher("/buoi4/update-sinh-vien.jsp").forward(request, response);
     }
 
-    private void detailSinhVien(HttpServletRequest request, HttpServletResponse response) {
+    private void detailSinhVien(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String mssv = request.getParameter("mssv");
+        SinhVien sv = sinhVienService.detail(mssv);
+        request.setAttribute("sv1", sv);
+        request.getRequestDispatcher("/buoi4/detail-sinh-vien.jsp").forward(request, response);
     }
 
     private void removeSinhVien(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -114,7 +122,7 @@ public class SinhVienServlet extends HttpServlet {
 //        response.sendRedirect("/sinh-vien/hien-thi");
         // C2: BeanUtil
         SinhVien sv = new SinhVien();
-        BeanUtils.populate(sv,request.getParameterMap());
+        BeanUtils.populate(sv, request.getParameterMap());
         sinhVienService.add(sv);
         response.sendRedirect("/sinh-vien/hien-thi");
     }

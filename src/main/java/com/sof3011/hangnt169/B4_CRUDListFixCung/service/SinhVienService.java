@@ -38,4 +38,14 @@ public class SinhVienService {
             }
         }
     }
+
+    public SinhVien detail(String mssv) {
+        for (SinhVien sv : listSinhVien) {
+            if (sv.getMssv().equalsIgnoreCase(mssv)) {
+                return sv;
+            }
+        }
+        return null;
+    }
+
 }
