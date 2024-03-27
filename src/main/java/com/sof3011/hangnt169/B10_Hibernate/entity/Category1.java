@@ -21,11 +21,18 @@ public class Category1 {
      * + C2: JPQL(JPA Query Languagae) => Truy van tren thuc the (tren class)
      * ORM(Object Relationship Mapping):
      * 1 table:
-     * + Table
-     * + Column:
-     * + Khoa chinh:
-     * + Khoa ngoai:
-     * + Cot binh thuong trong table
+             * + Table
+             * + Column:
+             * + Khoa chinh:
+             * + Khoa ngoai:
+             * + Cot binh thuong trong table
+     * Relatioship:
+     *      1-1 : One to One
+     *      1-N: One to Many
+     *      N-1: Many to One
+     *      N-N: Many to Many => Xu ly trong SQL tach bang
+     *     1 Product -  1 Category:
+     *     1 Category - N Product:
      */
 
     @Id
